@@ -71,8 +71,13 @@ export default function PostTweetForm() {
 
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e?.target;
+
     if (files && files.length === 1) {
-      setFile(files[0]);
+      if (Math.floor(files[0].size / 1024) <= 1024) {
+        setFile(files[0]);
+      } else {
+        alert("1MB이하로 부탁드립니다.");
+      }
     }
   };
 
@@ -91,10 +96,7 @@ export default function PostTweetForm() {
       });
 
       if (file) {
-        const locationRef = ref(
-          storage,
-          `tweets/${user.uid}-${user.displayName}/${doc.id}`
-        );
+        const locationRef = ref(storage, `tweets/${user.uid}/${doc.id}`);
         const result = await uploadBytes(locationRef, file);
         const url = await getDownloadURL(result.ref);
         await updateDoc(doc, {
@@ -114,7 +116,7 @@ export default function PostTweetForm() {
     <Form onSubmit={onSubmit}>
       <TextArea rows={5} maxLength={180} onChange={onChange} value={tweet} />
       <AttachFileButton htmlFor="file">
-        {file ? "사진 추가 완료!" : "사진 추가"}
+        {file ? "사진 추가 완료!" : "사진 추가(1MB이하)"}
       </AttachFileButton>
       <AttachFileInput
         onChange={onFileChange}
@@ -122,7 +124,7 @@ export default function PostTweetForm() {
         id="file"
         accept="image/*"
       />
-      <SubmitBtn type="submit" value={isLoading ? "Loading" : "Post Tweet"} />
+      <SubmitBtn type="submit" value={isLoading ? "Loading" : "게시하기"} />
     </Form>
   );
 }
