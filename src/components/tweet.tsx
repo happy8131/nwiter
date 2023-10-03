@@ -1,4 +1,3 @@
-import { updateProfile } from "firebase/auth";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 import {
   deleteObject,
@@ -6,7 +5,6 @@ import {
   ref,
   uploadBytes,
 } from "firebase/storage";
-import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 import { auth, db, storage } from "../../firebase";
@@ -65,10 +63,9 @@ const DeleteButton = styled.button`
 `;
 
 export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
-  const router = useRouter();
-
   const user = auth.currentUser;
   const [photoEdit, setPhotoEdit] = useState(photo);
+
   const onDelete = async () => {
     const ok = confirm("정말 게시글을 삭제 하시겠습니까?");
 

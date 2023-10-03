@@ -15,6 +15,7 @@ import styled from "styled-components";
 import { auth, db, storage } from "../../firebase";
 import Layout from "../components/layout";
 import { async } from "@firebase/util";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ const Tweets = styled.div`
 `;
 
 export default function Profile() {
+  const router = useRouter();
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
   const [tweets, setTweets] = useState<ITweet[]>([]);
@@ -117,6 +119,10 @@ export default function Profile() {
   };
 
   useEffect(() => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
     fetchTweets();
   }, []);
 
@@ -166,7 +172,7 @@ export default function Profile() {
         )}
         {!bEdit && (
           <Name>
-            {user?.displayName ? user.displayName : "손오공"}
+            {user?.displayName ? user.displayName : "손님"}
             <span onClick={() => setbEdit(true)}>Edit</span>
           </Name>
         )}
