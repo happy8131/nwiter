@@ -21,3 +21,4 @@ Firebase로 만든 Clone 미니 트위터인데 추가적인 기능을 추가했
 ## Deploy on Firebase
 
 [미니 트윗](https://nwitter-48f6e.web.app/)
+![img](https://github.com/happy8131/nwiter/assets/70251881/44bbd67c-eb3f-4858-93e9-e2c7e89e05b9)
