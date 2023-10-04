@@ -115,7 +115,9 @@ export default function Tweet({ username, photo, tweet, userId, id }: ITweet) {
       </Column>
       <Column>
         {photo && <Photo src={photoEdit}></Photo>}
-        {user?.uid === userId && <PostEdit htmlFor="fileEdit">Edit</PostEdit>}
+        {user?.uid === userId && photo && (
+          <PostEdit htmlFor="fileEdit">Edit</PostEdit>
+        )}
         <AttachFileInput
           onChange={onFileEdit}
           type="file"
