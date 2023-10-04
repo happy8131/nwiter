@@ -14,7 +14,6 @@ import { ChangeEvent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { auth, db, storage } from "../../firebase";
 import Layout from "../components/layout";
-import { async } from "@firebase/util";
 import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
@@ -54,13 +53,24 @@ const EditInput = styled.input`
 const Name = styled.span`
   font-size: 22px;
   display: flex;
+  width: auto;
   span {
     margin-left: 5px;
     font-size: 12px;
-    text-align: center;
-    text-justify: center;
+
     padding: 5px;
 
+    background-color: skyblue;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  p {
+    font-size: 12px;
+    margin-left: 5px;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
     background-color: skyblue;
     border-radius: 10px;
     cursor: pointer;
@@ -167,7 +177,7 @@ export default function Profile() {
         {bEdit && (
           <Name>
             <EditInput onChange={onChange} type="text" />{" "}
-            <span onClick={onClick}>수정</span>
+            <p onClick={onClick}>수정</p>
           </Name>
         )}
         {!bEdit && (

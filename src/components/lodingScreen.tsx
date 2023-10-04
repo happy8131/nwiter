@@ -14,7 +14,7 @@ const Text = styled.span`
 export default function LoadingScreen() {
   return (
     <Wrapper>
-      <Text>로딩스크린</Text>
+      <Text>Loading...</Text>
     </Wrapper>
   );
 }

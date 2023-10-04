@@ -38,6 +38,11 @@ export const Input = styled.input`
   }
 `;
 
+export const CheckText = styled.div`
+  color: red;
+  text-align: center;
+`;
+
 export const Switcher = styled.span`
   margin-top: 20px;
   a {
