@@ -16,9 +16,8 @@ bun dev
 
 ## 소개
 
-안녕하세요! 현재 프로젝트는 노션 API로 사용해서 블로그나 노션에 개인적으로 스터디한걸 취준생 분들 또는 개인 스터디 하시는 분들에게 조금이나마 도움드리고자 만들게 됐습니다. 종종 제가 공부한 부분을 현재 프로젝트에 올릴 계획입니다. 도움이 됐으면 좋겠습니다." "
-![스터디북](.image/img.png)
+Firebase로 만든 Clone 미니 트위터인데 추가적인 기능을 추가했습니다 건의나 문의사항은 꼭 트윗으로 남겨주세요!
 
-## Deploy on Vercel
+## Deploy on Firebase
 
-[개발자 StoryBook](https://next-js-study-book.vercel.app/)
+[미니 트윗](https://nwitter-48f6e.web.app/)
