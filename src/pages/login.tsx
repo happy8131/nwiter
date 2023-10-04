@@ -12,6 +12,24 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { auth } from "../../firebase";
+import styled from "styled-components";
+
+const MenuItem = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: d4d1e8;
+  margin-bottom: 5px;
+  svg {
+    width: 30px;
+    fill: #d4d1e8;
+  }
+`;
 
 export default function Login() {
   const router = useRouter();
@@ -53,6 +71,24 @@ export default function Login() {
 
   return (
     <Wrapper>
+      <Link href="/">
+        <MenuItem>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.0}
+            stroke="currentColor"
+            className="w-1 h-1"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+            />
+          </svg>
+        </MenuItem>
+      </Link>
       <Title>로그인</Title>
       <Form onSubmit={onSubmit}>
         <Input

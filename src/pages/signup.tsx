@@ -1,4 +1,5 @@
 import {
+  CheckText,
   Error,
   Form,
   Input,
@@ -10,7 +11,7 @@ import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { auth } from "../../firebase";
 
 export default function Signup() {
@@ -19,7 +20,9 @@ export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checkPassword, setCheckPassword] = useState("");
   const [error, setError] = useState("");
+  const [bCheck, setCheck] = useState(false);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -31,6 +34,8 @@ export default function Signup() {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+    } else if (name === "passwordCheck") {
+      setCheckPassword(value);
     }
   };
 
@@ -59,9 +64,16 @@ export default function Signup() {
     } finally {
       setLoading(false);
     }
-    console.log(name, email, password);
   };
 
+  useEffect(() => {
+    if (password === checkPassword) {
+      setCheck(true);
+    } else {
+      setCheck(false);
+    }
+  }, [password, checkPassword]);
+  console.log(password, checkPassword, bCheck);
   return (
     <Wrapper>
       <Title>회원 가입</Title>
@@ -86,11 +98,24 @@ export default function Signup() {
           onChange={onChange}
           name="password"
           value={password}
-          placeholder="비밀번호"
+          placeholder="비밀번호(6자이상)"
           type="password"
           required
         />
-        <Input type="submit" value={isLoading ? "Loading..." : "회원가입"} />
+        <Input
+          onChange={onChange}
+          name="passwordCheck"
+          value={checkPassword}
+          placeholder="비밀번호 확인"
+          type="password"
+          required
+        />
+        {!bCheck && <CheckText>비밀번호를 확인해주세요.</CheckText>}
+        <Input
+          disabled={!bCheck}
+          type="submit"
+          value={isLoading ? "Loading..." : "회원가입"}
+        />
       </Form>
       {error !== "" ? <Error>{error}</Error> : null}
       <Switcher>
